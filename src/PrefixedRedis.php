@@ -70,7 +70,7 @@ class PrefixedRedis extends \Redis
 			/** @noinspection PhpUndefinedMethodInspection */
 			return $this->unlink($keys);
 		}
-		return $this->del($keys);
+		return (int)$this->del($keys);
 	}
 
 	/**
