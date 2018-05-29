@@ -34,15 +34,15 @@ class PrefixedRedis extends \Redis
 	/**
 	 * @inheritdoc
 	 */
-	public function setOption($name, $value)
+	public function setOption($name, $value): bool
 	{
 		if ($name === self::OPT_PREFIX) {
 			if ($value === $this->prefix) {
-				return;
+				return true;
 			}
 			throw new \InvalidArgumentException('You can not reset the PREFIX for ' . static::class);
 		}
-		parent::setOption($name, $value);
+		return parent::setOption($name, $value);
 	}
 
 	/**
