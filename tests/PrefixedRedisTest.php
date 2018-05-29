@@ -87,4 +87,24 @@ class PrefixedRedisTest extends TestCase
 		// Assuming we running redis 3.x
 		self::assertFalse($redis->isUseUnlinkAll());
 	}
+
+	public function testSetOptionWorks(): void
+	{
+		$redis = $this->redis();
+		$redis->setOption(\Redis::OPT_READ_TIMEOUT, '3');
+		self::assertSame(3.0, $redis->getOption(\Redis::OPT_READ_TIMEOUT));
+	}
+
+	public function testSetOptionPrefixSameDoesNotCrash(): void
+	{
+		$redis = $this->redis();
+		self::assertTrue($redis->setOption(\Redis::OPT_PREFIX, self::PREFIX));
+	}
+
+	public function testSetOptionPrefixOtherThrows(): void
+	{
+		$redis = $this->redis();
+		$this->expectException(\InvalidArgumentException::class);
+		$redis->setOption(\Redis::OPT_PREFIX, 'other');
+	}
 }
