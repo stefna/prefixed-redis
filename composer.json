@@ -1,6 +1,16 @@
 {
-  "name": "stefna/redis",
+  "name": "stefna/prefixed-redis",
+  "description": "Prefixed Redis client",
   "license": "MIT",
+  "keywords": [
+    "redis"
+  ],
+  "authors": [
+    {
+      "name": "Birgir Haraldsson",
+      "email": "biggi@stefna.is"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Stefna\\Redis\\": "src"
