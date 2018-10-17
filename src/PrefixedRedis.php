@@ -48,7 +48,7 @@ class PrefixedRedis extends \Redis
 	/**
 	 * @inheritdoc
 	 */
-	public function flushDB(): bool
+	public function flushDB($async = null): bool
 	{
 		$this->deleteAll();
 		return true;
@@ -57,7 +57,7 @@ class PrefixedRedis extends \Redis
 	/**
 	 * @inheritdoc
 	 */
-	public function flushAll(): bool
+	public function flushAll($async = null): bool
 	{
 		$this->deleteAll();
 		return true;
