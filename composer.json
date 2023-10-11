@@ -1,35 +1,35 @@
 {
-  "name": "stefna/prefixed-redis",
-  "description": "Prefixed Redis client",
-  "license": "MIT",
-  "keywords": [
-    "redis"
-  ],
-  "authors": [
-    {
-      "name": "Birgir Haraldsson",
-      "email": "biggi@stefna.is"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Stefna\\Redis\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Stefna\\Redis\\Tests\\": "tests"
-    }
-  },
-  "require": {
-    "php": ">=7.1.0",
-    "ext-redis": "^4.1|^5.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^7.1"
-  },
-  "scripts": {
-    "test": "vendor/bin/phpunit",
-    "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml"
-  }
+	"name": "stefna/prefixed-redis",
+	"description": "Prefixed Redis client",
+	"license": "MIT",
+	"keywords": [
+		"redis"
+	],
+	"authors": [
+		{
+			"name": "Birgir Haraldsson",
+			"email": "biggi@stefna.is"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Stefna\\Redis\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Stefna\\Redis\\Tests\\": "tests"
+		}
+	},
+	"require": {
+		"php": ">=7.1.0",
+		"ext-redis": "^4.1|^5.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^7.1"
+	},
+	"scripts": {
+		"test": "vendor/bin/phpunit",
+		"test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml"
+	}
 }
