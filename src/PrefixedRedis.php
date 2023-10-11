@@ -17,12 +17,16 @@ class PrefixedRedis extends \Redis
 		$this->useUnlinkAll = $preferUnlinkAll && method_exists($this, 'unlink');
 	}
 
-	public function connect($host, $port = 6379, $timeout = 0.0, $reserved = null, $retry_interval = 0): bool
-	{
-		if (!$reserved) {
-			$reserved = '';
-		}
-		$ret = parent::connect($host, $port, $timeout, $reserved, $retry_interval);
+	public function connect(
+		$host,
+		$port = 6379,
+		$timeout = 0,
+		$persistent_id = null,
+		$retry_interval = 0,
+		$read_timeout = 0,
+		$context = null
+	): bool	{
+		$ret = parent::connect($host, $port, $timeout, $persistent_id, $retry_interval, $read_timeout, $context);
 		// Must call setOption() after connect
 		parent::setOption(self::OPT_PREFIX, $this->prefix);
 		if ($this->useUnlinkAll) {
@@ -34,15 +38,15 @@ class PrefixedRedis extends \Redis
 	/**
 	 * @inheritdoc
 	 */
-	public function setOption($name, $value): bool
+	public function setOption($option, $value): bool
 	{
-		if ($name === self::OPT_PREFIX) {
+		if ($option === self::OPT_PREFIX) {
 			if ($value === $this->prefix) {
 				return true;
 			}
 			throw new \InvalidArgumentException('You can not reset the PREFIX for ' . static::class);
 		}
-		return parent::setOption($name, $value);
+		return parent::setOption($option, $value);
 	}
 
 	/**
@@ -67,7 +71,6 @@ class PrefixedRedis extends \Redis
 	{
 		$keys = $this->getKeysWithoutPrefix();
 		if ($this->useUnlinkAll) {
-			/** @noinspection PhpUndefinedMethodInspection */
 			return $this->unlink($keys);
 		}
 		return (int)$this->del($keys);
