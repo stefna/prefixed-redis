@@ -25,7 +25,7 @@ class PrefixedRedis extends \Redis
 		$read_timeout = 0,
 		$context = null
 	): bool {
-		$ret = parent::connect($host, $port, $timeout, $persistent_id, $retry_interval, $read_timeout, $context);
+		$ret = parent::connect($host, $port, $timeout, $persistent_id, $retry_interval, $read_timeout, $context ?? []);
 		// Must call setOption() after connect
 		parent::setOption(self::OPT_PREFIX, $this->prefix);
 		if ($this->useUnlinkAll) {
