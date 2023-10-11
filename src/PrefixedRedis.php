@@ -6,7 +6,6 @@ class PrefixedRedis extends \Redis
 {
 	/** @var string */
 	protected $prefix;
-
 	/** @var bool */
 	protected $useUnlinkAll;
 
@@ -25,7 +24,7 @@ class PrefixedRedis extends \Redis
 		$retry_interval = 0,
 		$read_timeout = 0,
 		$context = null
-	): bool	{
+	): bool {
 		$ret = parent::connect($host, $port, $timeout, $persistent_id, $retry_interval, $read_timeout, $context);
 		// Must call setOption() after connect
 		parent::setOption(self::OPT_PREFIX, $this->prefix);
@@ -106,5 +105,4 @@ class PrefixedRedis extends \Redis
 			$this->useUnlinkAll = false;
 		}
 	}
-
 }
